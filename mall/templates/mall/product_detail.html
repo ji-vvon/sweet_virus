@@ -1,6 +1,7 @@
 {% extends 'mall/base.html' %}
 {% block main_area %}
 
+{% include 'mall/side.html' %}
         <!-- Product section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -15,12 +16,23 @@
                     </div>
 
                     <div class="col-md-7">
-                        <div class="small mb-1">SKU: BST-498</div>
-                        <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
-                        <div class="fs-5 mb-5">
-                            <span >{{ product.price }}원</span>
+                        <div class="small mb-1">
+                        {% if product.category %}
+                            <span class="badge bg-secondary float-right">{{ product.category }}</span>
+                        {% else %}
+                            <span class="badge bg-secondary float-right">기타</span>
+                        {% endif %}
+                            <span class="badge bg-secondary float-right">브랜드</span>
                         </div>
-                        <p class="lead">{{ product.info_text }}</p>
+
+                        <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+
+                        <div class="fs-5 mb-5">
+                            <span >{{ product.price }}원 ({{product.gram}}g)</span>
+                        </div>
+
+                        <p class="lead">{{ product.info_text }}</p><br>
+
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">

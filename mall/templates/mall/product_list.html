@@ -1,19 +1,22 @@
 {% extends 'mall/base.html' %}
+
 {% block main_area %}
 
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <h1 class="display-4 fw-bolder">Show Sweet Things!</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">원하는 간식을 쇼핑하세요</p>
                 </div>
             </div>
         </header>
 
+        {% include 'mall/side.html' %}
+
         <!-- Section-->
         <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
+            <div class="container px-4 px-lg-5 mt-1">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
                     {% if product_list.exists %}
@@ -27,13 +30,20 @@
                             {% else %}
                                 <img class="card-img-top" src="https://dummyimage.com/280x180/dee2e6/6c757d.jpg" alt="..." />
                             {% endif %}
+
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
+                                    {% if p.category %}
+                                        <span class="badge bg-secondary">{{ p.category }}</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">기타</span>
+                                    {% endif %}
+                                        <span class="badge bg-secondary">브랜드</span>
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ p.name }}</h5>
+                                    <h5 class="fw-bolder mt-2">{{ p.name }}</h5>
                                     <!-- Product price-->
-                                    {{p.price}}원
+                                    {{ p.price }}원 ({{p.gram}}g)
                                 </div>
                             </div>
                             <!-- Product actions-->
