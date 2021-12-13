@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
@@ -19,8 +18,8 @@ class Category(models.Model):
 class Brand(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
-    address = models.CharField(max_length=100, unique=True)
-    contact = models.CharField(max_length=50, unique=True)
+    address = models.CharField(max_length=100)
+    contact = models.CharField(max_length=50)
     since = models.DateField(blank=True, null=True)
 
     def __str__(self):
@@ -29,7 +28,7 @@ class Brand(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=30)
-    info_text = models.CharField(max_length=100, blank=True)
+    info_text = models.CharField(max_length=30)
     img = models.ImageField(upload_to='mall/images/%Y/%m/%d/', blank=True)
     price = models.CharField(max_length=10)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.SET_NULL)
