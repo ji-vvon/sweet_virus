@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from .models import Product, Category
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -59,3 +60,24 @@ class ProductCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
             return response
         else:
             return redirect('/mall/')
+
+
+class ProductUpdate(LoginRequiredMixin, UpdateView):
+    model = Product
+    fields = ['name', 'info_text', 'img', 'price', 'brand', 'category', 'calories', 'gram', 'nutrition_img']
+
+    template_name = 'mall/product_update_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super(ProductUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductUpdate, self).get_context_data()
+        return context
+
+    def form_valid(self, form):
+        response = super(ProductUpdate, self).form_valid(form)
+        return response
