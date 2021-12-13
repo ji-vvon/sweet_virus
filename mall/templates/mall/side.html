@@ -3,9 +3,9 @@
 <!--            카테고리 위젯-->
             <div class="col-8">
                 {% for c in categories %}
-                <button type="button" class="btn btn-warning" href="{{c.get_absolute_url}}">{{ c }} ({{ c.product_set.count }})</button>
+                <a class="btn btn-warning" href="{{c.get_absolute_url}}">{{ c }} ({{ c.product_set.count }})</a>
                 {% endfor %}
-                <button type="button" class="btn btn-warning" href="http://127.0.0.1:8000/mall/category/no_category">기타 ({{ no_category_product_count }})</button>
+                <a class="btn btn-warning" href="http://127.0.0.1:8000/mall/category/no_category">기타 ({{ no_category_product_count }})</a>
             </div>
 
 <!--            검색 위젯-->

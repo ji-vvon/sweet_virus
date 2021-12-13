@@ -1,5 +1,5 @@
 {% extends 'mall/base.html' %}
-
+{% load static %}
 {% block main_area %}
 
         <!-- Header-->
@@ -7,7 +7,10 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">Show Sweet Things!</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">원하는 간식을 쇼핑하세요</p>
+                    <p class="lead fw-normal text-white-50 mb-0">원하는 간식을 쇼핑하세요</p><br>
+                    {% if category %} <p class="lead fw-normal text-white mb-0">[ {{category}} ]</p>
+                    {% else %} <p class="lead fw-normal text-white- mb-0">[ 전체 ]</p>
+                    {% endif %}
                 </div>
             </div>
         </header>
@@ -56,9 +59,13 @@
 
                 </div>
             </div>
+
             {% else %}
-                <h2>아직 게시물이 없습니다.</h2>
+                <div class="row">
+                    <h5>아직 상품이 없습니다.</h5><br>
+                </div>
             {% endif %}
+
         </section>
 
 {% endblock %}
