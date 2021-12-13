@@ -22,7 +22,12 @@
                         {% else %}
                             <span class="badge bg-secondary float-right">기타</span>
                         {% endif %}
-                            <span class="badge bg-secondary float-right">브랜드</span>
+
+                        {% if product.brand %}
+                             <span class="badge bg-secondary">{{ product.brand }}</span>
+                        {% else %}
+                             <span class="badge bg-secondary">기타</span>
+                            {% endif %}
                         </div>
 
                         <h1 class="display-8 fw-bolder">{{ product.name }}</h1>

@@ -17,8 +17,20 @@
 
         {% include 'mall/side.html' %}
 
+        <div class="container mt-2">
+            <div class="text-center">
+            {% if user.is_authenticated %}
+                {% if user.is_staff or user.is_superuser %}
+                <a class="btn btn-info btn-small float-right" href="/mall/create_product">
+                    <i class="fas fa-pen"></i> New Product
+                </a>
+                {% endif %}
+            {% endif %}
+            </div>
+        </div>
+
         <!-- Section-->
-        <section class="py-5">
+        <section class="py-4">
             <div class="container px-4 px-lg-5 mt-1">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
@@ -42,7 +54,13 @@
                                     {% else %}
                                         <span class="badge bg-secondary">기타</span>
                                     {% endif %}
-                                        <span class="badge bg-secondary">브랜드</span>
+
+                                    {% if p.brand %}
+                                        <span class="badge bg-secondary">{{ p.brand }}</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">기타</span>
+                                    {% endif %}
+
                                     <!-- Product name-->
                                     <h5 class="fw-bolder mt-2">{{ p.name }}</h5>
                                     <!-- Product price-->
