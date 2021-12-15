@@ -47,3 +47,14 @@ class Product(models.Model):
         return f'/mall/{self.pk}/'
 
 
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.author}::{self.content}'
+
+    def get_absolute_url(self):
+        return f'{self.product.get_absolute_url()}#comment-{self.pk}'
