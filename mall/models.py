@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -28,7 +30,7 @@ class Brand(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=30)
-    info_text = models.CharField(max_length=30)
+    info_text = models.CharField(max_length=100)
     img = models.ImageField(upload_to='mall/images/%Y/%m/%d/', blank=True)
     price = models.CharField(max_length=10)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.SET_NULL)
