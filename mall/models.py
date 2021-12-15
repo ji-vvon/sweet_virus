@@ -30,7 +30,7 @@ class Brand(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=30)
-    info_text = models.CharField(max_length=100)
+    info_text = MarkdownxField()
     img = models.ImageField(upload_to='mall/images/%Y/%m/%d/', blank=True)
     price = models.CharField(max_length=10)
     brand = models.ForeignKey(Brand, null=True, blank=True, on_delete=models.SET_NULL)
@@ -46,6 +46,8 @@ class Product(models.Model):
     def get_absolute_url(self):
         return f'/mall/{self.pk}/'
 
+    def get_content_markdown(self):
+        return markdown(self.info_text)
 
 class Comment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

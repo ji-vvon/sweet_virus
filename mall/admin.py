@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import Product, Category, Brand, Comment
+from markdownx.admin import MarkdownxModelAdmin
 
-
-admin.site.register(Product)
+admin.site.register(Product, MarkdownxModelAdmin)
 admin.site.register(Comment)
 
 

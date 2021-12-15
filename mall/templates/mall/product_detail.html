@@ -37,7 +37,7 @@
                             <span >{{ product.price }}원 ({{product.gram}}g)</span>
                         </div>
 
-                        <p class="lead">{{ product.info_text }}</p><br>
+                        <p class="lead">{{ product.get_content_markdown | safe }}</p><br>
 
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
@@ -57,9 +57,8 @@
                             Edit Product
                         </a>
                     {% endif %}
-                        <div>
                 </div>
-
+                </div>
             </div>
         </section>
 
