@@ -18,7 +18,11 @@
         {% include 'mall/side.html' %}
 
         <div class="container mt-2">
-            <div class="text-center">
+            <div class="mt-2" style="text-align:center;">
+                {% if search_info %}<p class="lead fw-normal mb-0">{{search_info}}</p>{% endif %}
+            </div>
+
+            <div style="text-align: right;">
             {% if user.is_authenticated %}
                 {% if user.is_staff or user.is_superuser %}
                 <a class="btn btn-info btn-small float-right" href="/mall/create_product">

@@ -1,4 +1,5 @@
 from django.core.exceptions import PermissionDenied
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -103,3 +104,20 @@ def new_comment(request, pk):
             return redirect(product.get_absolute_url())
     else:
         raise PermissionDenied
+
+
+class ProductSearch(ProductList):
+    paginate_by = None
+
+    def get_queryset(self):
+        q = self.kwargs['q']
+        product_list = Product.objects.filter(
+            Q(name__contains=q) | Q(brand__name__contains=q)
+        ).distinct()
+        return product_list
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'검색어 <{q}>에 대한 {self.get_queryset().count()}개의 상품이 있습니다.'
+        return context

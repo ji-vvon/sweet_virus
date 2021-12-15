@@ -49,6 +49,14 @@ class Product(models.Model):
     def get_content_markdown(self):
         return markdown(self.info_text)
 
+    def get_avatar_url(self):
+        if self.author.socialaccount_set.exists():
+            return self.author.socialaccount_set.first().get_avatar_url()
+
+        else:
+            return 'https://doitdjango.com/avatar/id/475/21399d185a8ff82e/svg/{self.author.email}/'
+
+
 class Comment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -60,3 +68,10 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return f'{self.product.get_absolute_url()}#comment-{self.pk}'
+
+    def get_avatar_url(self):
+        if self.author.socialaccount_set.exists():
+            return self.author.socialaccount_set.first().get_avatar_url()
+
+        else:
+            return 'https://doitdjango.com/avatar/id/475/21399d185a8ff82e/svg/{self.author.email}/'
