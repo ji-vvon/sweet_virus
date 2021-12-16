@@ -75,3 +75,11 @@ class Comment(models.Model):
 
         else:
             return 'https://doitdjango.com/avatar/id/475/21399d185a8ff82e/svg/{self.author.email}/'
+
+
+class Cart(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.author}::{self.product.name}'
