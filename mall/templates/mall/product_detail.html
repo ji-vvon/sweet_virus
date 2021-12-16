@@ -4,11 +4,11 @@
 
 {% include 'mall/side.html' %}
         <!-- Product section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
+        <section class="py-3">
+            <div class="container px-4 px-lg-5 my-3">
+                <div class="row gx-4 gx-lg-5 py-3 align-items-center">
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         {% if product.img %}
                             <img class="card-img-top mb-5 mb-md-0" src="{{ product.img.url }}" alt="{{product.name}}의 이미지" />
                         {% else %}
@@ -16,14 +16,13 @@
                         {% endif %}
                     </div>
 
-                    <div class="col-md-7">
-                        <div class="small mb-1">
+                    <div class="col-md-6">
+                        <div class="mb-3">
                         {% if product.category %}
-                            <span class="badge bg-secondary float-right">{{ product.category }}</span>
+                            <span class="badge bg-secondary">{{ product.category }}</span>
                         {% else %}
-                            <span class="badge bg-secondary float-right">기타</span>
+                            <span class="badge bg-secondary">기타</span>
                         {% endif %}
-
                         {% if product.brand %}
                              <span class="badge bg-secondary">{{ product.brand }}</span>
                         {% else %}
@@ -31,21 +30,63 @@
                             {% endif %}
                         </div>
 
-                        <h1 class="display-8 fw-bolder">{{ product.name }}</h1>
+                        <h2 class="display-8 fw-bolder">{{ product.name }}</h2><br>
 
                         <div class="fs-5 mb-5">
-                            <span >{{ product.price }}원 ({{product.gram}}g)</span>
+                            <span >
+                                가격 : &nbsp; <b>{{ product.price }}</b>원<br>
+                                용량 : &nbsp; <b>{{product.gram}}</b>g<br>
+                                칼로리 : &nbsp; <b>{{ product.calories }}</b>cal<br>
+                            </span>
                         </div>
 
                         <p class="lead">{{ product.get_content_markdown | safe }}</p><br>
 
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
                         </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row gx-4 gx-lg-5 my-4 align-items-center">
+                    <div class="col-md-6" style="text-align:center;">
+                        <h4 class="display-8 fw-bolder">[영양성분]</h4><br>
+                    </div>
+                    <div class="col-md-6" style="text-align:center;">
+                        <h4 class="display-8 fw-bolder">[제조사]</h4><br>
+                    </div>
+                </div>
+
+                <div class="row gx-4 gx-lg-5 my-4 align-items-center">
+                    <div class="col-md-6">
+                        {% if product.nutrition_img %}
+                        <img class="card-img-top mb-5 mb-md-0" src="{{ product.nutrition_img.url }}" alt="{{product.name}}의 이미지" />
+                        {% else %}
+                        <div class="fs-5 mb-5" style="text-align:center;">
+                            <span >영양성분 정보가 존재하지 않습니다.</span>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        {% if product.brand %}
+                        <div class="fs-5 mb-5" style="text-align:center;">
+                            <span >
+                                제조사명 : {{ product.brand.name }}<br>
+                                주소 : {{product.brand.address}}<br>
+                                연락처 : {{ product.brand.contact }}<br>
+                                설립일 : {{ product.brand.since | date:"Y.m.d"}}<br>
+                            </span>
+                        </div>
+                        {% else %}
+                        <div class="fs-5 mb-5" style="text-align:center;">
+                            <span >제조사 정보가 존재하지 않습니다.</span>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -75,7 +116,7 @@
                                     {{comment_form | crispy}}
                                     </div>
                                     <div class="mt-2" style="text-align: right;">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">댓글 입력</button>
                                     </div>
 
                             </form>
@@ -88,14 +129,13 @@
                                 {% if product.comment_set.exists %}
                                 {% for comment in product.comment_set.all %}
                                 <!-- Single comment-->
-                                <div class="d-flex" id="comment-{{comment.pk}}">
+                                <div class="d-flex mb-2 " id="comment-{{comment.pk}}" >
                                     <div class="flex-shrink-0"><img class="rounded-circle" src="{{comment.get_avatar_url}}" alt="{{comment.author}}" width="60px"/></div>
                                     <div class="ms-3">
                                         <div class="fw-bold">{{ comment.author.username }} &nbsp;&nbsp;&nbsp;
-                                            <small class="text-muted">{{ comment.created_at }}</small></div>
-                                        <p>
-                                            {{comment.content | linebreaks}}
-                                        </p>
+                                            <small class="text-muted">{{ comment.created_at | date:"y.m.d H:i"}}</small>
+                                        </div>
+                                        <p>{{comment.content | linebreaks}}</p>
                                     </div>
                                 </div>
                                 {% endfor %}
