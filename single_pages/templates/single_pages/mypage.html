@@ -3,23 +3,60 @@
 {% block main_area %}
 
 {% if user.is_authenticated %}
-<div class="container mt-5">
-    {% if user.socialaccount_set.all.0.get_avatar_url %}
-    <img class="rounded-circle" width="25px" src="{{user.socialaccount_set.all.0.get_avatar_url}}">
-    {% else %}
-    <img class="rounded-circle" width="25px" src='https://doitdjango.com/avatar/id/475/21399d185a8ff82e/svg/{{user.email}}/'>
-    {% endif %}
-    {{ user.username }}<br>
-    이메일 : {{ user.email }}
+<div class="row">
+    <div class="col-md-12">
+        <img src="{% static 'single_pages/images/mypage2.png' %}" class="d-block w-100" alt="...">
+    </div>
 </div>
+
+<section class="pt-2 pb-5">
+    <div class="container px-4 px-lg-5 my-3" style="text-align:center;">
+        <div>
+            <h4>[ 내 정보 ]</h4><br>
+        </div>
+        {% if user.socialaccount_set.all.0.get_avatar_url %}
+        <img class="rounded-circle" width="30px" src="{{user.socialaccount_set.all.0.get_avatar_url}}">
+        {% else %}
+        <img class="rounded-circle" width="30px" src='https://doitdjango.com/avatar/id/475/21399d185a8ff82e/svg/{{user.email}}/'>
+        {% endif %}
+        &nbsp;<b>{{ user.username }}</b><br><br>
+        📧 : {{ user.email }}
+    </div>
+
+    <div class="container mt-5 px-5 px-lg-5 my-3">
+        <div style="text-align:center;">
+            <h4>[ 내가 작성한 댓글 ]</h4><br>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">상품명</th>
+                    <th scope="col">댓글 내용</th>
+                    <th scope="col">작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+            <tr onclick="location.href='{{ comment.get_absolute_url }}'" scope="row">
+                <td>▶</td>
+                <td>{{comment.product.name}}</td>
+                <td>{{comment.content}}</td>
+                <td>{{comment.created_at| date:"y.m.d H:i"}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
 
 
 
 
 {% else %}
 <div class="container mt-5" style="text-align: center;">
-    <h1>로그인 후 이용해 주세요.</h1>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><h3>로그인 후 이용해 주세요.</h3>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 {% endif %}
 

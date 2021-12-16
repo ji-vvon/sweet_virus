@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from mall.models import Product
-# Create your views here.
+from mall.models import Product, Comment
 
 def landing(request):
     recent_products = Product.objects.order_by('-pk')[:3]
@@ -10,4 +9,9 @@ def about_us(request):
     return render(request, 'single_pages/about_us.html')
 
 def mypage(request):
-    return render(request, 'single_pages/mypage.html')
+    if request.user.is_authenticated:
+        me = request.user
+        comments = Comment.objects.all().filter(author=me).order_by('-id')
+        return render(request, 'single_pages/mypage.html', {'comments': comments})
+    else:
+        return render(request, 'single_pages/mypage.html')
