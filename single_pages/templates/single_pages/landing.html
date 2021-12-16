@@ -3,7 +3,7 @@
 {% block main_area %}
 <!--        <header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">-->
         <header class="bg-image-full">
-            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -11,25 +11,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{% static 'single_pages/images/image1.jpg' %}" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
+                        <img src="{% static 'single_pages/images/main1.jpg' %}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{% static 'single_pages/images/image1.jpg' %}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
+                        <img src="{% static 'single_pages/images/main2.jpg' %}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="{% static 'single_pages/images/image1.jpg' %}" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </div>
+                        <img src="{% static 'single_pages/images/main3.jpg' %}" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -41,17 +29,12 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-<!--            <div class="text-center my-5">-->
-<!--                <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />-->
-<!--                <h1 class="text-white fs-3 fw-bolder">Full Width Pics</h1>-->
-<!--                <p class="text-white-50 mb-0">Landing Page Template</p>-->
-<!--            </div>-->
         </header>
 
         <!-- Related items section-->
-        <section class="py-5 bg-light">
+        <section class="py-2 bg-white">
             <div class="container px-4 px-lg-5 mt-5">
-                <h2 class="fw-bolder mb-4">Recently Products</h2>
+                <h3 class="fw-bolder mb-4">NEW</h3>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for product in recent_products %}
                     <div class="col mb-5">
@@ -90,36 +73,6 @@
                         </div>
                     </div>
                     {% endfor %}
-                </div>
-            </div>
-        </section>
-
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>Full Width Backgrounds</h2>
-                        <p class="lead">A single, lightweight helper class allows you to add engaging, full width background images to sections of your page.</p>
-                        <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem starting here on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in the universe.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Image element - set the background image for the header in the line below-->
-        <div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
-            <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-            <div style="height: 20rem"></div>
-        </div>
-        <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>Engaging Background Images</h2>
-                        <p class="lead">The background images used in this template are sourced from Unsplash and are open source and free to use.</p>
-                        <p class="mb-0">I can't tell you how many people say they were turned off from science because of a science teacher that completely sucked out all the inspiration and enthusiasm they had for the course.</p>
-                    </div>
                 </div>
             </div>
         </section>
