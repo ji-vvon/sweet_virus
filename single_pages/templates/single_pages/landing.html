@@ -11,7 +11,7 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{% static 'single_pages/images/main1.jpg' %}" class="d-block w-100" alt="...">
+                        <img src="{% static 'single_pages/images/main1.png' %}" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="{% static 'single_pages/images/main2.jpg' %}" class="d-block w-100" alt="...">
@@ -32,9 +32,9 @@
         </header>
 
         <!-- Related items section-->
-        <section class="py-2 bg-white">
-            <div class="container px-4 px-lg-5 mt-5" style="text-align:center;">
-                <h3 class="fw-bolder mb-4">신상 간식</h3>
+        <section class="pt-2 pb-4 bg-white">
+            <div class="container px-4 px-lg-5 mt-5 bg-light" style="text-align:center;">
+                <br><h4 class="fw-bolder mb-4">신상 간식이 왔어요! <i class="fas fa-cookie"></i></h4>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for product in recent_products %}
                     <div class="col mb-5">
@@ -68,7 +68,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-warning mt-auto" href="{{ product.get_absolute_url }}">더보기&nbsp;&nbsp;<i class="fas fa-mouse-pointer"></i></a></div>
+                                <div class="text-center text-white"><a class="btn btn-outline-secondary mt-auto" href="{{ product.get_absolute_url }}">더보기&nbsp;&nbsp;<i class="fas fa-mouse-pointer"></i></a></div>
                             </div>
                         </div>
                     </div>

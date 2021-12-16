@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mall.models import Product, Comment, Cart
+from mall.models import Product, Comment, Cart, Category
 
 
 def landing(request):
@@ -8,7 +8,10 @@ def landing(request):
 
 
 def about_us(request):
-    return render(request, 'single_pages/about_us.html')
+    categories = Category.objects.all()
+    no_category_product_count = Product.objects.filter(category=None).count()
+    return render(request, 'single_pages/about_us.html',
+                  {'categories' : categories, 'no_category_product_count': no_category_product_count})
 
 
 def mypage(request):

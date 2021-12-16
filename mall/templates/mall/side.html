@@ -6,9 +6,9 @@
                     <!-- 카테고리 -->
                     <div class="col-8">
                         {% for c in categories %}
-                        <a class="btn btn-info" href="{{c.get_absolute_url}}"><b>{{ c }}</b> ({{ c.product_set.count }})</a>
+                        <a class="btn btn-info btn-sm" href="{{c.get_absolute_url}}"><b>{{ c }}</b> ({{ c.product_set.count }})</a>
                         {% endfor %}
-                            <a class="btn btn-info" href="http://127.0.0.1:8000/mall/category/no_category"><b>기타 </b>({{ no_category_product_count }})</a>
+                        <a class="btn btn-info btn-sm" href="http://127.0.0.1:8000/mall/category/no_category"><b>기타 </b>({{ no_category_product_count }})</a>
                     </div>
 
                     <!-- 검색 -->
