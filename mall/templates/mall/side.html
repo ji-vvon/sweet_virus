@@ -1,21 +1,21 @@
 
-        <header class="bg-light py-2 px-5 px-lg-5">
+        <header class="py-3 px-5 px-lg-5">
             <div class="container" style="text-align: center;">
                 <div class="row text-center text-white">
 
                     <!-- 카테고리 -->
                     <div class="col-8">
                         {% for c in categories %}
-                            <a class="btn btn-outline-danger" href="{{c.get_absolute_url}}">{{ c }} ({{ c.product_set.count }})</a>
+                        <a class="btn btn-info" href="{{c.get_absolute_url}}"><b>{{ c }}</b> ({{ c.product_set.count }})</a>
                         {% endfor %}
-                            <a class="btn btn-outline-danger" href="http://127.0.0.1:8000/mall/category/no_category">기타 ({{ no_category_product_count }})</a>
+                            <a class="btn btn-info" href="http://127.0.0.1:8000/mall/category/no_category"><b>기타 </b>({{ no_category_product_count }})</a>
                     </div>
 
                     <!-- 검색 -->
                     <div class="col-4">
                         <div class="input-group">
                             <input class="form-control" id="search-input" type="text" placeholder="제품명 / 브랜드 검색" aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button" onclick="searchProduct()"><i class="fas fa-search"></i></button>
+                            <button class="btn btn-success" id="button-search" type="button" onclick="searchProduct()"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
 

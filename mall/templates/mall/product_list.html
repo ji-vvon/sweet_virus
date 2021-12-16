@@ -3,13 +3,13 @@
 {% block main_area %}
 
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="py-5" style="background-image: url('/static/mall/images/back.png');">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Show Sweet Things!</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">원하는 간식을 쇼핑하세요</p><br>
-                    {% if category %} <p class="lead fw-normal text-white mb-0">[ {{category}} ]</p>
-                    {% else %} <p class="lead fw-normal text-white- mb-0">[ 전체 ]</p>
+                <div class="text-center text-black">
+                    <h1 class="display-4 fw-bolder">Shop Sweet Things!</h1>
+                    <p class="lead fw-normal text-black-50 mb-0">원하는 간식을 쇼핑하세요</p><br>
+                    {% if category %} <p class="lead fw-normal text-black mb-0">[ {{category}} ]</p>
+                    {% else %} <p class="lead fw-normal text-black-mb-0">[ 전체 ]</p>
                     {% endif %}
                 </div>
             </div>
@@ -17,25 +17,25 @@
 
         {% include 'mall/side.html' %}
 
-        <div class="container mt-2">
-            <div class="mt-2" style="text-align:center;">
-                {% if search_info %}<p class="lead fw-normal mb-0">{{search_info}}</p>{% endif %}
-            </div>
-
-            <div style="text-align: right;">
-            {% if user.is_authenticated %}
-                {% if user.is_staff or user.is_superuser %}
-                <a class="btn btn-info btn-small float-right" href="/mall/create_product">
-                    <i class="fas fa-pen"></i> New Product
-                </a>
-                {% endif %}
-            {% endif %}
-            </div>
-        </div>
-
         <!-- Section-->
-        <section class="py-5 mb-2">
-            <div class="container px-4 px-lg-5 mt-1">
+        <section class="py-3 bg-white">
+            <div class="container px-4 px-lg-5 mt-1" >
+
+                <div class="row pb-3">
+                    <div class="mt-2 col-md-10" style="text-align:center;">
+                        {% if search_info %}<p class="lead fw-normal mb-2 text-white">{{search_info}}</p>{% endif %}
+                    </div>
+                    <div class="col-md-2" style="text-align: right;">
+                    {% if user.is_authenticated %}
+                    {% if user.is_staff or user.is_superuser %}
+                    <a class="btn btn-outline-warning btn-small float-right" href="/mall/create_product">
+                        <i class="fas fa-pen"></i> 상품 등록
+                    </a>
+                    {% endif %}
+                    {% endif %}
+                     </div>
+                </div>
+
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% if product_list.exists %}
                     {% for p in product_list %}
@@ -52,15 +52,15 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     {% if p.category %}
-                                        <span class="badge bg-secondary">{{ p.category }}</span>
+                                        <span class="badge badge-pill badge-info">{{ p.category }}</span>
                                     {% else %}
-                                        <span class="badge bg-secondary">기타</span>
+                                        <span class="badge badge-pill badge-info">기타</span>
                                     {% endif %}
 
                                     {% if p.brand %}
-                                        <span class="badge bg-secondary">{{ p.brand }}</span>
+                                        <span class="badge badge-pill badge-success">{{ p.brand }}</span>
                                     {% else %}
-                                        <span class="badge bg-secondary">기타</span>
+                                        <span class="badge badge-pill badge-success">기타</span>
                                     {% endif %}
 
                                     <!-- Product name-->
@@ -71,7 +71,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ p.get_absolute_url }}">View More</a></div>
+                                <div class="text-center"><a class="btn btn-warning mt-auto" href="{{ p.get_absolute_url }}">더보기&nbsp;&nbsp;<i class="fas fa-mouse-pointer"></i></a></div>
                             </div>
                         </div>
                     </div>
@@ -82,12 +82,10 @@
             {% else %}
                 <div class="row">
                     <div class="col-12">
-                        <h5>아직 상품이 없습니다.</h5>
+                        <br><br><h5>아직 상품이 없습니다.</h5><br><br><br><br><br><br><br><br>
                     </div>
                 </div>
             {% endif %}
-
-        </section>
 
             <!-- Pagination-->
             {% if is_paginated %}
@@ -113,5 +111,5 @@
                     {% endif %}
                 </ul>
             {% endif %}
-
+        </section>
 {% endblock %}

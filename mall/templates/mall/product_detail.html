@@ -4,7 +4,7 @@
 
 {% include 'mall/side.html' %}
         <!-- Product section-->
-        <section class="py-3">
+        <section class="pt-2 pb-5">
             <div class="container px-4 px-lg-5 my-3">
                 <div class="row gx-4 gx-lg-5 py-3 align-items-center">
 
@@ -19,14 +19,14 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                         {% if product.category %}
-                            <span class="badge bg-secondary">{{ product.category }}</span>
+                            <span class="badge badge-pill badge-info">{{ product.category }}</span>
                         {% else %}
-                            <span class="badge bg-secondary">기타</span>
+                            <span class="badge badge-pill badge-info">기타</span>
                         {% endif %}
                         {% if product.brand %}
-                             <span class="badge bg-secondary">{{ product.brand }}</span>
+                             <span class="badge badge-pill badge-success">{{ product.brand }}</span>
                         {% else %}
-                             <span class="badge bg-secondary">기타</span>
+                             <span class="badge badge-pill badge-success">기타</span>
                             {% endif %}
                         </div>
 
@@ -34,9 +34,9 @@
 
                         <div class="fs-5 mb-5">
                             <span >
-                                가격 : &nbsp; <b>{{ product.price }}</b>원<br>
-                                용량 : &nbsp; <b>{{product.gram}}</b>g<br>
-                                칼로리 : &nbsp; <b>{{ product.calories }}</b>cal<br>
+                                가격&nbsp;&nbsp;&nbsp; : &nbsp; {{ product.price }}원<br>
+                                용량&nbsp;&nbsp;&nbsp; : &nbsp; {{product.gram}}g<br>
+                                칼로리 : &nbsp; {{ product.calories }}cal<br>
                             </span>
                         </div>
 
@@ -52,16 +52,16 @@
                 </div>
 
                 <hr>
-                <div class="row gx-4 gx-lg-5 my-4 align-items-center">
-                    <div class="col-md-6" style="text-align:center;">
-                        <h4 class="display-8 fw-bolder">[영양성분]</h4><br>
+                <div class="row">
+                    <div class="col-md-6 mt-4" style="text-align:center;">
+                        <h5 class="display-8 fw-bolder">[영양정보]</h5><br>
                     </div>
-                    <div class="col-md-6" style="text-align:center;">
-                        <h4 class="display-8 fw-bolder">[제조사]</h4><br>
+                    <div class="col-md-6 mt-4" style="text-align:center;">
+                        <h5 class="display-8 fw-bolder">[제조사]</h5><br>
                     </div>
                 </div>
 
-                <div class="row gx-4 gx-lg-5 my-4 align-items-center">
+                <div class="row">
                     <div class="col-md-6">
                         {% if product.nutrition_img %}
                         <img class="card-img-top mb-5 mb-md-0" src="{{ product.nutrition_img.url }}" alt="{{product.name}}의 이미지" />
@@ -74,7 +74,7 @@
 
                     <div class="col-md-6">
                         {% if product.brand %}
-                        <div class="fs-5 mb-5" style="text-align:center;">
+                        <div class="fs-6 mb-5" style="text-align:center;">
                             <span >
                                 제조사명 : {{ product.brand.name }}<br>
                                 주소 : {{product.brand.address}}<br>
@@ -83,31 +83,33 @@
                             </span>
                         </div>
                         {% else %}
-                        <div class="fs-5 mb-5" style="text-align:center;">
+                        <div class="fs-6 mb-5" style="text-align:center;">
                             <span >제조사 정보가 존재하지 않습니다.</span>
                         </div>
                         {% endif %}
                     </div>
                 </div>
 
-                <div class="container mt-2">
-                    <div style="text-align:right">
+                <div class="row mt-2">
+                    <div class="col-md-12" style="text-align:right">
                     {% if user.is_authenticated and user == product.author %}
-                        <a href="/mall/update_product/{{product.pk}}/" class="btn btn-info btn-sm float-right">
+                        <a href="/mall/update_product/{{product.pk}}/" class="btn btn-outline-warning btn-small float-right">
                             <i class="fas fa-pen"></i>
-                            Edit Product
+                            상품 수정
                         </a>
                     {% endif %}
+                    </div>
                 </div>
-                </div>
+
             </div>
         </section>
 
+
 <!-- Comments section-->
-        <section>
-            <div class="mx-5 mb-5" id="comment-area">
+        <section class="pt-2 pb-5">
+            <div class="container px-4 px-lg-5 my-3" id="comment-area">
                 <div class="card bg-light">
-                    <div class="card-body">
+                    <div class="row gx-4 gx-lg-5 py-3 align-items-center card-body">
                         <!-- Comment form-->
                         {% if user.is_authenticated %}
                             <form class="mb-4" id="comment-form" method="POST" action="{{ product.get_absolute_url }}new_comment/">
@@ -115,17 +117,17 @@
                                     <div class="form-group">
                                     {{comment_form | crispy}}
                                     </div>
-                                    <div class="mt-2" style="text-align: right;">
-                                        <button type="submit" class="btn btn-primary">댓글 입력</button>
+                                    <div class="mt-1" style="text-align: right;">
+                                        <button type="submit" class="btn btn-warning">댓글 작성</button>
                                     </div>
-
                             </form>
+                            <div>
                                 {% else %}
-                                    <a role="button" class="btn btn-outline-dark" href="#"
+                                    <a role="button" class="btn btn-warning mb-5" href="#"
                                     data-toggle="modal" data-target="#loginModal">
-                                        Log in and leave a comment</a>
+                                        로그인 후 댓글을 작성할 수 있습니다. 클릭 시 로그인창으로 이동합니다.</a>
                                 {% endif %}
-
+                            </div>
                                 {% if product.comment_set.exists %}
                                 {% for comment in product.comment_set.all %}
                                 <!-- Single comment-->

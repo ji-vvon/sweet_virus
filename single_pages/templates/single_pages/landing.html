@@ -33,8 +33,8 @@
 
         <!-- Related items section-->
         <section class="py-2 bg-white">
-            <div class="container px-4 px-lg-5 mt-5">
-                <h3 class="fw-bolder mb-4">NEW</h3>
+            <div class="container px-4 px-lg-5 mt-5" style="text-align:center;">
+                <h3 class="fw-bolder mb-4">신상 간식</h3>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for product in recent_products %}
                     <div class="col mb-5">
@@ -49,15 +49,15 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     {% if product.category %}
-                                    <span class="badge bg-secondary">{{ product.category }}</span>
+                                    <span class="badge badge-pill badge-info">{{ product.category }}</span>
                                     {% else %}
-                                    <span class="badge bg-secondary">기타</span>
+                                    <span class="badge badge-pill badge-info">기타</span>
                                     {% endif %}
 
                                     {% if product.brand %}
-                                    <span class="badge bg-secondary">{{ product.brand }}</span>
+                                    <span class="badge badge-pill badge-success">{{ product.brand }}</span>
                                     {% else %}
-                                    <span class="badge bg-secondary">기타</span>
+                                    <span class="badge badge-pill badge-success">기타</span>
                                     {% endif %}
 
                                     <!-- Product name-->
@@ -68,7 +68,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ product.get_absolute_url }}">View More</a></div>
+                                <div class="text-center"><a class="btn btn-warning mt-auto" href="{{ product.get_absolute_url }}">더보기&nbsp;&nbsp;<i class="fas fa-mouse-pointer"></i></a></div>
                             </div>
                         </div>
                     </div>

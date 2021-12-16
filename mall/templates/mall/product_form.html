@@ -1,14 +1,13 @@
 {% extends 'mall/base.html' %}
 {% load crispy_forms_tags %}
-
 {% block main_area %}
-<div class="container mb-2">
-    <h1>Create New Product</h1><hr/>
+<div class="container mt-4 mb-5 pb-3">
+    <h2>상품 등록</h2><hr/>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form | crispy}}
         <div style="text-align: right">
-            <button type="submit" class="btn btn-primary float-right">Submit</button>
+            <button type="submit" class="btn btn-warning float-right">등록하기</button>
         </div>
     </form>
 </div>
