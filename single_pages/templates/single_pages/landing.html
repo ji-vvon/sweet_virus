@@ -34,7 +34,7 @@
         <!-- Related items section-->
         <section class="pt-2 pb-4 bg-white">
             <div class="container px-4 px-lg-5 mt-5 bg-light" style="text-align:center;">
-                <br><h4 class="fw-bolder mb-4">신상 간식이 왔어요! <i class="fas fa-cookie"></i></h4>
+                <br><h4 class="fw-bolder mb-4"><i class="fas fa-cookie"></i> 신상 간식이 왔어요! <i class="fas fa-cookie"></i></h4>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for product in recent_products %}
                     <div class="col mb-5">
@@ -48,6 +48,8 @@
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
+                                    <span class="badge badge-pill badge-danger">NEW</span>
+
                                     {% if product.category %}
                                     <span class="badge badge-pill badge-info">{{ product.category }}</span>
                                     {% else %}
