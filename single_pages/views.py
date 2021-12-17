@@ -8,10 +8,7 @@ def landing(request):
 
 
 def about_us(request):
-    categories = Category.objects.all()
-    no_category_product_count = Product.objects.filter(category=None).count()
-    return render(request, 'single_pages/about_us.html',
-                  {'categories' : categories, 'no_category_product_count': no_category_product_count})
+    return render(request, 'single_pages/about_us.html')
 
 
 def mypage(request):
