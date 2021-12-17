@@ -1,7 +1,8 @@
 {% extends 'mall/base.html' %}
 {% load static %}
-{% block main_area %}
+{% block title_area %}Product{% endblock %}
 
+{% block main_area %}
         <!-- Header-->
         <header class="py-5" style="background-image: url('/static/mall/images/back.png');">
             <div class="container px-4 px-lg-5 my-5">
@@ -23,7 +24,7 @@
 
                 <div class="row pb-3">
                     <div class="mt-2 col-md-10" style="text-align:center;">
-                        {% if search_info %}<p class="lead fw-normal mb-2 text-white">{{search_info}}</p>{% endif %}
+                        {% if search_info %}<p class="lead fw-normal mb-2">{{search_info}}</p>{% endif %}
                     </div>
                     <div class="col-md-2" style="text-align: right;">
                     {% if user.is_authenticated %}

@@ -1,7 +1,9 @@
 {% extends 'mall/base.html' %}
 {% load crispy_forms_tags %}
-{% block main_area %}
 
+{% block title_area %}Product - {{product.name}}{% endblock %}
+
+{% block main_area %}
 {% include 'mall/side.html' %}
         <!-- Product section-->
         <section class="pt-2 pb-5">
@@ -66,10 +68,10 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-6 mt-4" style="text-align:center;">
-                        <h5 class="display-8 fw-bolder">[영양정보]</h5><br>
+                        <h5 class="display-8 fw-bolder">[ 영양정보 ]</h5><br>
                     </div>
                     <div class="col-md-6 mt-4" style="text-align:center;">
-                        <h5 class="display-8 fw-bolder">[제조사]</h5><br>
+                        <h5 class="display-8 fw-bolder">[ 제조사 ]</h5><br>
                     </div>
                 </div>
 
@@ -130,7 +132,7 @@
                                     {{comment_form | crispy}}
                                     </div>
                                     <div class="mt-1" style="text-align: right;">
-                                        <button type="submit" class="btn btn-secondary">댓글 작성</button>
+                                        <button type="submit" class="btn btn-secondary">작성</button>
                                     </div>
                             </form>
                             <div>

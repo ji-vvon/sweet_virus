@@ -1,7 +1,8 @@
 {% extends 'mall/base.html' %}
 {% load static %}
-{% block main_area %}
+{% block title_area %}MyPage{% endblock %}
 
+{% block main_area %}
 {% if user.is_authenticated %}
 <div class="row">
     <div class="col-md-12">
